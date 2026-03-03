@@ -1,0 +1,130 @@
+<div class="dashboard">
+  <!-- Header -->
+  <app-header></app-header>
+
+  <main class="main">
+    <!-- Progress bar -->
+    <div class="progress-section">
+      <div class="progress-header">
+        <div>
+          <h2 class="day-title">Today's Quests</h2>
+          <p class="progress-label">{{ completedCount }} / {{ quests.length }} completed</p>
+        </div>
+        <div class="blinker-status" [class.earned]="allDone && quests.length > 0">
+          <span class="blinker-icon">🌟</span>
+          <span>{{ allDone && quests.length > 0 ? 'Blinker Earned!' : 'Complete all quests' }}</span>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="progressPercent"></div>
+      </div>
+    </div>
+
+    <!-- Category filters -->
+    <div class="filters">
+      <button class="filter-btn" [class.active]="activeFilter === 'ALL'" (click)="activeFilter = 'ALL'">All</button>
+      <button class="filter-btn" [class.active]="activeFilter === 'SKINCARE'" (click)="activeFilter = 'SKINCARE'">
+        🧴 Skin Care
+      </button>
+      <button class="filter-btn" [class.active]="activeFilter === 'EDUCATION'" (click)="activeFilter = 'EDUCATION'">
+        📚 Education
+      </button>
+      <button class="filter-btn" [class.active]="activeFilter === 'PRODUCTIVITY'" (click)="activeFilter = 'PRODUCTIVITY'">
+        ⚙️ Productivity
+      </button>
+      <button class="filter-btn" [class.active]="activeFilter === 'HEALTH'" (click)="activeFilter = 'HEALTH'">
+        💪 Health
+      </button>
+    </div>
+
+    <!-- Quest list -->
+    @if (!loading) {
+      <div class="quest-list">
+        @if (filteredQuests.length === 0) {
+          <div class="empty-state">
+            <span>🗺️</span>
+            <p>No quests yet. Add one below!</p>
+          </div>
+        }
+        @for (q of filteredQuests; track q) {
+          <div class="quest-card" [class.completed]="q.completed">
+            <button class="complete-btn" (click)="toggleComplete(q)" [title]="q.completed ? 'Mark incomplete' : 'Mark complete'">
+              @if (!q.completed) {
+                <span>○</span>
+              }
+              @if (q.completed) {
+                <span>✓</span>
+              }
+            </button>
+            <div class="quest-info">
+              <div class="quest-top">
+                <span class="quest-title">{{ q.title }}</span>
+                <span class="tag repeat-tag" [class.daily]="q.repeatType === 'DAILY'" [class.single]="q.repeatType === 'SINGLE'">
+                  {{ q.repeatType === 'DAILY' ? '🔁 Daily' : '1️⃣ Once' }}
+                </span>
+              </div>
+              <div class="quest-meta">
+                <span class="category-tag">{{ categoryLabel(q.category) }}</span>
+                @if (q.description) {
+                  <span class="quest-desc">{{ q.description }}</span>
+                }
+              </div>
+            </div>
+            <button class="delete-btn" (click)="deleteQuest(q.id)" title="Delete quest">✕</button>
+          </div>
+        }
+      </div>
+    }
+
+    @if (loading) {
+      <div class="loading">Loading quests...</div>
+    }
+
+    <!-- Add Quest Form -->
+    <div class="add-section">
+      <button class="toggle-form-btn" (click)="showForm = !showForm">
+        {{ showForm ? '✕ Cancel' : '+ Add Quest' }}
+      </button>
+
+      @if (showForm) {
+        <div class="add-form">
+          <h3>New Quest</h3>
+          <div class="form-row">
+            <div class="field">
+              <label>Title *</label>
+              <input [(ngModel)]="newTitle" type="text" placeholder="Quest title"/>
+            </div>
+            <div class="field">
+              <label>Description</label>
+              <input [(ngModel)]="newDescription" type="text" placeholder="Optional details"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Category *</label>
+              <select [(ngModel)]="newCategory">
+                <option value="SKINCARE">🧴 Skin Care</option>
+                <option value="EDUCATION">📚 Education</option>
+                <option value="PRODUCTIVITY">⚙️ Productivity</option>
+                <option value="HEALTH">💪 Health</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Repeat *</label>
+              <select [(ngModel)]="newRepeatType">
+                <option value="DAILY">🔁 Daily</option>
+                <option value="SINGLE">1️⃣ Single (once)</option>
+              </select>
+            </div>
+          </div>
+          @if (formError) {
+            <div class="error-msg">{{ formError }}</div>
+          }
+          <button class="btn-primary" (click)="createQuest()" [disabled]="creating">
+            {{ creating ? 'Adding...' : 'Add Quest ⚡' }}
+          </button>
+        </div>
+      }
+    </div>
+  </main>
+</div>
