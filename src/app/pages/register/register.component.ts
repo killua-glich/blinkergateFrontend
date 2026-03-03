@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
-  template: `
+    selector: 'app-register',
+    imports: [FormsModule, RouterModule],
+    template: `
     <div class="auth-page">
       <div class="auth-card">
         <div class="logo">
@@ -16,9 +15,11 @@ import { AuthService } from '../../services/auth.service';
           <h1>Blinkergate</h1>
         </div>
         <p class="tagline">Begin your quest journey</p>
-
-        <div *ngIf="error" class="error-msg">{{ error }}</div>
-
+    
+        @if (error) {
+          <div class="error-msg">{{ error }}</div>
+        }
+    
         <div class="field">
           <label>Username</label>
           <input [(ngModel)]="username" type="text" placeholder="your_username"/>
@@ -31,16 +32,16 @@ import { AuthService } from '../../services/auth.service';
           <label>Password</label>
           <input [(ngModel)]="password" type="password" placeholder="min. 6 characters"/>
         </div>
-
+    
         <button class="btn-primary" (click)="register()" [disabled]="loading">
           {{ loading ? 'Creating account...' : 'Create Account' }}
         </button>
-
+    
         <p class="switch-link">Already have an account? <a routerLink="/login">Log in</a></p>
       </div>
     </div>
-  `,
-  styles: [`
+    `,
+    styles: [`
     .auth-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg); }
     .auth-card { width: 380px; padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
     .logo { display: flex; align-items: center; gap: .75rem; margin-bottom: .25rem; }

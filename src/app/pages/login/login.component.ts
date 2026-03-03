@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
-  template: `
+    selector: 'app-login',
+    imports: [FormsModule, RouterModule],
+    template: `
     <div class="auth-page">
       <div class="auth-card">
         <div class="logo">
@@ -16,9 +15,11 @@ import { AuthService } from '../../services/auth.service';
           <h1>Blinkergate</h1>
         </div>
         <p class="tagline">Quest Master awaits</p>
-
-        <div *ngIf="error" class="error-msg">{{ error }}</div>
-
+    
+        @if (error) {
+          <div class="error-msg">{{ error }}</div>
+        }
+    
         <div class="field">
           <label>Username</label>
           <input [(ngModel)]="username" type="text" placeholder="your_username" autocomplete="username"/>
@@ -27,16 +28,16 @@ import { AuthService } from '../../services/auth.service';
           <label>Password</label>
           <input [(ngModel)]="password" type="password" placeholder="••••••••" autocomplete="current-password"/>
         </div>
-
+    
         <button class="btn-primary" (click)="login()" [disabled]="loading">
           {{ loading ? 'Logging in...' : 'Enter the Gate' }}
         </button>
-
+    
         <p class="switch-link">No account? <a routerLink="/register">Create one</a></p>
       </div>
     </div>
-  `,
-  styles: [`
+    `,
+    styles: [`
     .auth-page {
       min-height: 100vh;
       display: flex;
