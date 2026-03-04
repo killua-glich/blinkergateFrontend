@@ -76,3 +76,8 @@
     color: var(--muted);
     padding: 2rem;
 }
+
+a, a:active, a:visited{
+    color: var(--accent);
+    text-decoration: none;
+}

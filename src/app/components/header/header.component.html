@@ -2,12 +2,12 @@
     <div class="header-left">
         <span class="logo-icon">⚡</span>
         <span class="logo-text">
-            <button routerlink="**">Blinkergate</button>
+            <a routerLink="/">Blinkergate</a>
         </span>
     </div>
     <div class="header-right">
           <span class="username">
-            <button class="btn-ghost" routerLink="user">{{ username }}</button>
+            <button class="btn-ghost" routerLink="/user">{{ username }}</button>
           </span>
         <button class="btn-ghost" (click)="logout()">Logout</button>
     </div>

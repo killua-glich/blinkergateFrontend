@@ -10,7 +10,7 @@ import {HeaderComponent} from "../../components/header/header.component";
 
 @Component({
     selector: 'app-dashboard',
-  imports: [FormsModule, RouterLink, HeaderComponent],
+  imports: [FormsModule, HeaderComponent],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css'
 })
@@ -94,6 +94,10 @@ export class DashboardComponent implements OnInit {
       PRODUCTIVITY: '⚙️ Productivity', HEALTH: '💪 Health'
     };
     return map[cat];
+  }
+
+  placehodler(){
+    console.log("works")
   }
 
   protected readonly routes = routes;
