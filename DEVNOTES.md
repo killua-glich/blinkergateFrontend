@@ -24,3 +24,7 @@ what needs to be done is update the backend
  - make an endpoint for updating username, role, current xp 
 
 also current xp should be updated on every blinker to avoid spamming the quest completion
+
+# Avatar selection ❌
+on user creation the user can choose one of the available avatars.
+the avatar can then be changed in the user page.

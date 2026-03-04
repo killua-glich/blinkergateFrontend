@@ -10,7 +10,7 @@
 
 /* ─── Card ────────────────────────────────────────────────── */
 .profile-card {
-    width: 280px;
+    width: 320px;
     background: #1a1c22;
     border-radius: 24px;
     padding: 2.5rem 2rem 2.25rem;
@@ -83,8 +83,8 @@
 /* ─── Avatar + Ring ───────────────────────────────────────── */
 .avatar-wrapper {
     position: relative;
-    width: 236px;
-    height: 236px;
+    width: 250px;
+    height: 250px;
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
@@ -111,9 +111,9 @@
 }
 
 .avatar-frame {
-    width: 180px;
-    height: 180px;
-    border-radius: 16px;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
     overflow: hidden;
     background: #111316;
     display: flex;

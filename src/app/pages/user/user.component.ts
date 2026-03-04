@@ -13,15 +13,28 @@ export interface UserProfile {
 }
 
 const LEVEL_ROLES: Record<number, string> = {
-    1:  'Fresh Blinker',
-    5:  'Apprentice Blinker',
+    1:  'Fresh Blinkerer',
+    5:  'Apprentice Blinkerer',
     10: 'Novice Blinkerer',
     15: 'Adept Blinkerer',
     20: 'Skilled Blinkerer',
     25: 'Expert Blinkerer',
-    30: 'Master Blinkerer',
-    40: 'Grand Master',
-    50: 'Legend of the Gate',
+    30: 'Master of the Penjamin',
+
+    40: 'Legend of the HotBox',
+    50: 'Grand Master of the green arts',
+    60: 'Bob the builder', //Patrick
+
+    100: 'Highest in the room', //Patrick
+    200: 'kafer lesh', //Patrick
+    300: 'Faded af',
+    400: 'Stone',
+
+    500: 'Bob Marley',
+    700: 'Wizz Khalifa',
+    900: 'Snoop Dogg',
+
+    1000: 'The smoke itself' // Jonas
 };
 
 function getRoleForLevel(level: number): string {
@@ -45,7 +58,7 @@ function getRoleForLevel(level: number): string {
 export class UserComponent {
     profile = signal<UserProfile>({
         username: 'Diego6769',
-        xp: 50,
+        xp: 60,
         xpRequired: 100,
         level: 10,
         role: 'Novice Blinkerer',

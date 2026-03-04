@@ -7,6 +7,7 @@ import { Quest, CreateQuestRequest, QuestCategory, RepeatType } from '../../mode
 import {routes} from "../../app.routes";
 import {RouterLink} from "@angular/router";
 import {HeaderComponent} from "../../components/header/header.component";
+import {repeat} from "rxjs";
 
 @Component({
     selector: 'app-dashboard',
@@ -96,8 +97,10 @@ export class DashboardComponent implements OnInit {
     return map[cat];
   }
 
-  placehodler(){
-    console.log("works")
+  redeemBlinker(){
+    this.quests.forEach(value => this.toggleComplete(value))
+
+    this.quests.filter(value => value.repeatType == "SINGLE").forEach(value => this.deleteQuest(value.id))
   }
 
   protected readonly routes = routes;
