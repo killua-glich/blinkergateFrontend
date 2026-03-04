@@ -1,1 +1,95 @@
 <app-header></app-header>
+
+<div class="profile-page">
+    <div class="profile-card">
+
+        <!-- Username Row -->
+        <div class="username-row">
+            @if (!isEditingUsername()) {
+                <h1 class="username">{{ profile().username }}</h1>
+                <button class="edit-btn" (click)="startEdit()" title="Edit username" aria-label="Edit username">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                    </svg>
+                </button>
+            } @else {
+                <input
+                        class="username-input"
+                        [ngModel]="editUsername()"
+                        (ngModelChange)="editUsername.set($event)"
+                        (keydown)="onUsernameKeydown($event)"
+                        (blur)="saveUsername()"
+                        maxlength="24"
+                        autofocus
+                        aria-label="Edit username"
+                />
+            }
+        </div>
+
+        <!-- XP Counter -->
+        <div class="xp-counter">{{ profile().xp }}/{{ profile().xpRequired }}</div>
+
+        <!-- Avatar + XP Ring -->
+        <div class="avatar-wrapper">
+            <svg
+                    class="xp-ring"
+                    [attr.width]="SIZE"
+                    [attr.height]="SIZE"
+                    [attr.viewBox]="'0 0 ' + SIZE + ' ' + SIZE"
+            >
+                <!-- Track -->
+                <circle
+                        class="ring-track"
+                        [attr.cx]="SIZE / 2"
+                        [attr.cy]="SIZE / 2"
+                        [attr.r]="RADIUS"
+                        fill="none"
+                        [attr.stroke-width]="STROKE"
+                />
+                <!-- Progress -->
+                <circle
+                        class="ring-progress"
+                        [attr.cx]="SIZE / 2"
+                        [attr.cy]="SIZE / 2"
+                        [attr.r]="RADIUS"
+                        fill="none"
+                        [attr.stroke-width]="STROKE"
+                        [attr.stroke-dasharray]="CIRCUMFERENCE"
+                        [attr.stroke-dashoffset]="dashOffset()"
+                        stroke-linecap="round"
+                        transform="rotate(-90)"
+                        [attr.transform]="'rotate(-90 ' + SIZE/2 + ' ' + SIZE/2 + ')'"
+                />
+            </svg>
+
+            <!-- Avatar image or placeholder -->
+            <div class="avatar-frame">
+                @if (profile().avatarUrl) {
+                    <img [src]="profile().avatarUrl" [alt]="profile().username + ' avatar'" class="avatar-img" />
+                } @else {
+                    <div class="avatar-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="1.2"
+                             stroke-linecap="round" stroke-linejoin="round" class="avatar-icon">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <span class="avatar-soon">Avatar coming soon</span>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Level -->
+        <div class="level-badge">LVL {{ profile().level }}</div>
+
+        <!-- Separator -->
+        <div class="separator"></div>
+
+        <!-- Role -->
+        <div class="role-title">{{ profile().role }}</div>
+
+    </div>
+</div>
