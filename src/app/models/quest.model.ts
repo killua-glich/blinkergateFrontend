@@ -20,6 +20,9 @@ export interface CreateQuestRequest {
 }
 
 export interface AuthResponse {
+  role: null;
+  currentXp: null;
+  lvl: null;
   token: string;
   username: string;
 }
