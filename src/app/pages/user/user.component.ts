@@ -135,7 +135,11 @@ export class UserComponent implements OnInit {
             { headers: this.getHeaders() }
         ).subscribe({
             next: (data) => {
-                // Update authService so the stored username stays in sync
+                // If the username changed, the backend issues a fresh token.
+                // We must replace the stored token or all future requests will 401.
+                if (data.token) {
+                    localStorage.setItem('bg_token', data.token);
+                }
                 this.authService.setUsername(data.username);
                 const level = data.lvl ?? this.profile().level;
                 this.profile.update(p => ({

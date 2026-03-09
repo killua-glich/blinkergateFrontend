@@ -3,6 +3,9 @@ for every note there is an emoji
 ❌ : for not done
 ✅ : for done 
 
+# LVL UP Notification ❌
+I want a notification when I level up
+
 # Dev Dockerfile ❌
 
 needs rework something doesnt work 
@@ -16,7 +19,7 @@ btn on click should uncomplete all quests and reset the status
 
 if a quest is tagged as **single repeat** it should be deleted 
 
-# change username doesnt change the username ❌
+# change username doesnt change the username ✅
 the current thing does not affect the username in the db so when you reload the page the name is like  before
 
 what needs to be done is update the backend
