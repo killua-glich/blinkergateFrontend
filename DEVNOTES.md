@@ -3,11 +3,12 @@ for every note there is an emoji
 ❌ : for not done
 ✅ : for done 
 
-# LVL UP Notification ❌
-I want a notification when I level up
+# Notifications ❌
+- I want a notification when I level up
+- I want a notifacation when I earn xp 
+- I want a notification when there is events e.x double xp weekend
 
 # Dev Dockerfile ❌
-
 needs rework something doesnt work 
 
 if you can do this you will increase productivity by 100% 
