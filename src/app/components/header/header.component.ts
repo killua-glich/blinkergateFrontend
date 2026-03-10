@@ -1,12 +1,14 @@
 import {Component, inject} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {RouterLink} from "@angular/router";
+import {NgOptimizedImage} from "@angular/common";
 
 
 @Component({
     selector: 'app-header',
     imports: [
-        RouterLink
+        RouterLink,
+        NgOptimizedImage
     ],
     templateUrl: './header.component.html',
     styleUrl: './header.component.css'

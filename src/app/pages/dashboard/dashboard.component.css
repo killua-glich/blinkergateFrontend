@@ -47,6 +47,8 @@
     font-size: .85rem;
     color: var(--muted);
     transition: all .3s;
+
+    cursor: not-allowed;
 }
 
 .blinker-status.earned {
@@ -54,10 +56,7 @@
     border-color: #ffd700;
     color: #ffd700;
     font-weight: 700;
-}
-
-.blinker-icon {
-    font-size: 1.1rem;
+    cursor: pointer;
 }
 
 .progress-bar {
@@ -147,6 +146,7 @@
 .complete-btn:hover {
     border-color: var(--accent);
     background: #e8ff411a;
+    cursor: pointer;
 }
 
 .quest-info {
