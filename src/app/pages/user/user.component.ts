@@ -3,6 +3,7 @@ import {HeaderComponent} from "../../components/header/header.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 export interface UserProfile {
     username: string;
@@ -57,8 +58,7 @@ export class UserComponent implements OnInit {
     private http = inject(HttpClient);
     authService = inject(AuthService);
 
-    private readonly API = 'http://localhost:8080/api'; //dev API
-    //private readonly API = 'https://api.blinkergate.lol/api';  //prod API
+    private readonly API = environment.apiBaseUrl;
 
     profile = signal<UserProfile>({
         username: '',

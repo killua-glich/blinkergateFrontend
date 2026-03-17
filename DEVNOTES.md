@@ -3,6 +3,12 @@ for every note there is an emoji
 ❌ : for not done
 ✅ : for done 
 
+## Envioronments
+if you want to start prod use
+````
+ng build --configuration=production
+````
+
 # Notifications ❌
 - I want a notification when I level up
 - I want a notifacation when I earn xp 
