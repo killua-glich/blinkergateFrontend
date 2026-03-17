@@ -57,7 +57,8 @@ export class UserComponent implements OnInit {
     private http = inject(HttpClient);
     authService = inject(AuthService);
 
-    private readonly API = 'http://localhost:8080/api';
+    private readonly API = 'http://localhost:8080/api'; //dev API
+    //private readonly API = 'https://api.blinkergate.lol/api';  //prod API
 
     profile = signal<UserProfile>({
         username: '',

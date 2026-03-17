@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AuthResponse } from '../models/quest.model';
 
-const API = 'http://localhost:8080/api';
+const API = 'http://localhost:8080/api';          //dev API
+//const API = 'https://api.blinkergate.lol/api';  //prod API
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

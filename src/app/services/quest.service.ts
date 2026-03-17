@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CreateQuestRequest, Quest } from '../models/quest.model';
 
-const API = 'http://localhost:8080/api';
+const API = 'http://localhost:8080/api';          //dev API
+//const API = 'https://api.blinkergate.lol/api';  //prod API
 
 @Injectable({ providedIn: 'root' })
 export class QuestService {
