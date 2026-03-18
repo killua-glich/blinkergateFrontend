@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { QuestService } from '../../services/quest.service';
@@ -28,7 +28,8 @@ export class DashboardComponent implements OnInit {
   newCategory: QuestCategory = 'PRODUCTIVITY';
   newRepeatType: RepeatType = 'DAILY';
 
-  constructor(private questService: QuestService, private authService: AuthService) {}
+  private questService = inject(QuestService)
+  private authService = inject(AuthService)
 
   get filteredQuests(): Quest[] {
     if (this.activeFilter === 'ALL') return this.quests;
@@ -97,10 +98,16 @@ export class DashboardComponent implements OnInit {
     return map[cat];
   }
 
-  redeemBlinker(){
-    this.quests.forEach(value => this.toggleComplete(value))
-
-    this.quests.filter(value => value.repeatType == "SINGLE").forEach(value => this.deleteQuest(value.id))
+  redeemBlinkerOnClick() {
+    this.questService.redeemBlinker().subscribe({
+      next: (updatedUser) => {
+        console.log('Redeemed!', updatedUser);
+        // update your profile signal here if needed
+        this.quests.forEach(value => this.toggleComplete(value));
+        this.quests.filter(value => value.repeatType == "SINGLE").forEach(value => this.deleteQuest(value.id));
+      },
+      error: (err) => console.error('Redeem failed', err)
+    });
   }
 
   protected readonly routes = routes;

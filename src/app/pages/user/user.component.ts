@@ -4,15 +4,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-
-export interface UserProfile {
-    username: string;
-    xp: number;
-    xpRequired: number;
-    level: number;
-    role: string;
-    avatarUrl?: string;
-}
+import {Observable} from "rxjs";
+import {UserProfile} from "../../models/userProfile.model";
 
 const LEVEL_ROLES: Record<number, string> = {
     1:  'Fresh Blinkerer',

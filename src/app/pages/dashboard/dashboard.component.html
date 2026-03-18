@@ -13,7 +13,7 @@
           @if (allDone && quests.length > 0) {
               <div class="blinker-status" [class.earned]="allDone && quests.length > 0">
                   <span class="blinker-icon">🌟</span>
-                  <span (click)="redeemBlinker()"> Blinker Earned! </span>
+                  <span (click)="redeemBlinkerOnClick()"> Blinker Earned! </span>
               </div>
           }
           @else {

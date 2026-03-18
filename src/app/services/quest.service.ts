@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CreateQuestRequest, Quest } from '../models/quest.model';
 import {environment} from "../../environments/environment";
+import {UserProfile} from "../models/userProfile.model";
 
 const API = environment.apiBaseUrl;
 
@@ -25,5 +26,10 @@ export class QuestService {
 
   deleteQuest(id: number): Observable<void> {
     return this.http.delete<void>(`${API}/quests/${id}`);
+  }
+
+  redeemBlinker(): Observable<UserProfile> {
+    console.log("I am working")
+    return this.http.post<UserProfile>(`${API}/quests/redeemBlinker`, {});
   }
 }
