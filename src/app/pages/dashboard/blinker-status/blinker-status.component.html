@@ -1,0 +1,22 @@
+<div class="blinker-wrapper">
+    <canvas #smokeCanvas class="smoke-stage" width="200" height="120"></canvas>
+
+    <button
+            class="blinker-status"
+            [class.earned]="earned"
+            [class.fired]="fired"
+            [disabled]="!earned || busy"
+            (click)="onRedeem()"
+    >
+        <svg viewBox="0 0 18 18" width="15" height="15" fill="currentColor">
+            <rect x="2" y="7" width="11" height="5" rx="2"/>
+            <rect x="13" y="8" width="3" height="3" rx="1"/>
+            <rect x="1" y="8" width="1.5" height="1" rx="0.5"/>
+            <path d="M5 5.5 Q6 3.5 5 1.5" stroke="currentColor" stroke-width="1"
+                  fill="none" stroke-linecap="round" opacity="0.5"/>
+            <path d="M8 6 Q9.5 3.5 8 1" stroke="currentColor" stroke-width="1"
+                  fill="none" stroke-linecap="round" opacity="0.35"/>
+        </svg>
+        <span>{{ earned ? points + 'xp — redeem reward' : 'complete all quests' }}</span>
+    </button>
+</div>

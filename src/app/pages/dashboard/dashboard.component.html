@@ -5,26 +5,21 @@
   <main class="main">
     <!-- Progress bar -->
     <div class="progress-section">
-      <div class="progress-header">
-        <div>
-          <h2 class="day-title">Today's Quests</h2>
-          <p class="progress-label">{{ completedCount }} / {{ quests.length }} completed</p>
-        </div>
-          @if (allDone && quests.length > 0) {
-              <div class="blinker-status" [class.earned]="allDone && quests.length > 0">
-                  <span class="blinker-icon">🌟</span>
-                  <span (click)="redeemBlinkerOnClick()"> Blinker Earned! </span>
-              </div>
-          }
-          @else {
-              <div class="blinker-status" [class.earned]="allDone && quests.length > 0">
-                  <span class="blinker-icon">🌟</span>
-                  <span> Complete all quests </span>
-              </div>
-          }
+        <div class="progress-header">
+            <div>
+                <h2 class="day-title">Today's Quests</h2>
+                <p class="progress-label">{{ completedCount }} / {{ quests.length }} completed</p>
+            </div>
 
-      </div>
-      <div class="progress-bar">
+            <!-- REPLACE everything that was here with this: -->
+            <app-blinker-status
+                    [earned]="allDone && quests.length > 0"
+                    [points]= "quests.length * 10"
+                    (redeem)="redeemBlinkerOnClick()"
+            />
+        </div>
+
+        <div class="progress-bar">
         <div class="progress-fill" [style.width.%]="progressPercent"></div>
       </div>
     </div>

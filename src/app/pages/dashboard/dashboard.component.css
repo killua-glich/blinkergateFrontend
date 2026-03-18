@@ -36,29 +36,6 @@
     margin: 0;
 }
 
-.blinker-status {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    padding: .5rem 1rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    font-size: .85rem;
-    color: var(--muted);
-    transition: all .3s;
-
-    cursor: not-allowed;
-}
-
-.blinker-status.earned {
-    background: #ffd70022;
-    border-color: #ffd700;
-    color: #ffd700;
-    font-weight: 700;
-    cursor: pointer;
-}
-
 .progress-bar {
     height: 6px;
     background: var(--border);

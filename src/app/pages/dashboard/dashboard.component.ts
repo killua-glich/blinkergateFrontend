@@ -8,10 +8,11 @@ import {routes} from "../../app.routes";
 import {RouterLink} from "@angular/router";
 import {HeaderComponent} from "../../components/header/header.component";
 import {repeat} from "rxjs";
+import {BlinkerStatusComponent} from "./blinker-status/blinker-status.component";
 
 @Component({
     selector: 'app-dashboard',
-  imports: [FormsModule, HeaderComponent],
+  imports: [FormsModule, HeaderComponent, BlinkerStatusComponent],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css'
 })
@@ -102,7 +103,7 @@ export class DashboardComponent implements OnInit {
     this.questService.redeemBlinker().subscribe({
       next: (updatedUser) => {
         console.log('Redeemed!', updatedUser);
-        // update your profile signal here if needed
+
         this.quests.forEach(value => this.toggleComplete(value));
         this.quests.filter(value => value.repeatType == "SINGLE").forEach(value => this.deleteQuest(value.id));
       },
