@@ -9,6 +9,7 @@ import {RouterLink} from "@angular/router";
 import {HeaderComponent} from "../../components/header/header.component";
 import {repeat} from "rxjs";
 import {BlinkerStatusComponent} from "./blinker-status/blinker-status.component";
+import {UserProfile} from "../../models/userProfile.model";
 
 @Component({
     selector: 'app-dashboard',
@@ -101,13 +102,13 @@ export class DashboardComponent implements OnInit {
 
   redeemBlinkerOnClick() {
     this.questService.redeemBlinker().subscribe({
-      next: (updatedUser) => {
+      next: (updatedUser: UserProfile) => {
         console.log('Redeemed!', updatedUser);
 
         this.quests.forEach(value => this.toggleComplete(value));
         this.quests.filter(value => value.repeatType == "SINGLE").forEach(value => this.deleteQuest(value.id));
       },
-      error: (err) => console.error('Redeem failed', err)
+      error: (err:unknown) => console.error('Redeem failed', err)
     });
   }
 
